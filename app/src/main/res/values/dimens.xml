@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Vertical padding of the app-->
+    <dimen name="vertical_padding">16dp</dimen>
+
+    <!--Height of the (invisible) divider between list items -->
+    <dimen name="divider_height">0dp</dimen>
+
+    <!--Margin left by the author's name-->
+    <dimen name="author_margin_left">6dp</dimen>
+
+    <!--Margin above title-->
+    <dimen name="additionalMargin">5dp</dimen>
+</resources>

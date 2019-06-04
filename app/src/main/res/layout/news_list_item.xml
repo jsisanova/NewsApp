@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for a single list item -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/vertical_padding">
+
+    <TextView
+        android:id="@+id/article_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextStyle"
+        android:layout_marginTop="@dimen/additionalMargin"
+        android:maxLines="3"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        tools:text="This is an example of how the article will look once it gets loaded. In case that the text is too long it will be ended by three dots." />
+    <TextView
+        android:id="@+id/article_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextStyle"
+        android:layout_marginBottom="@dimen/additionalMargin"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:fontFamily="monospace"
+        android:textColor="@color/middleFont"
+        android:textSize="15sp"
+        tools:text="section" />
+    <TextView
+        android:id="@+id/article_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/author_margin_left"
+        android:textColor="@color/middleFont"
+        android:textSize="17sp"
+        android:fontFamily="sans-serif-condensed"
+        tools:text="Author's Name" />
+    <TextView
+        android:id="@+id/date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/smallFont"
+        android:textSize="11sp"
+        tools:text="Article Date" />
+</LinearLayout>
