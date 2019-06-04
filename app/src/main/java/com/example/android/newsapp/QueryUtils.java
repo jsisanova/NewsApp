@@ -118,11 +118,11 @@ public final class QueryUtils {
      */
     public static List<News> fetchNewsStoryData(String requestUrl) {
         // Force the background thread to sleep for 2 seconds, to test that loading indicator works
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(4000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
 //        Log.i(LOG_TAG, "Test: call fetchEarthquakeData()");
 
