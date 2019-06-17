@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Use the three vertical dots icon for settings menu-->
+<!--Create a menu item whose id is action_settings because this menu will open up the actions we can take in the SettingsActivity.-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.android.newsapp.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/settings_menu_item" />
+</menu>

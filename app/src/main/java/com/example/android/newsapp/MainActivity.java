@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -150,5 +152,30 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<List<News>> loader) {
 //        Log.i(LOG_TAG, "Test: call onLoaderReset()");
         adapter.clear();
+    }
+
+
+    // Inflate the Menu we specified in the main.xml when the MainActivity opens up, and display the menu in the app bar.
+    @Override
+    // Initialize the contents of the Activity's options menu.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    // Open the SettingsActivity when the user selects the Options Menu
+    @Override
+    // Pass the MenuItem that is selected
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Determine which item was selected and what action to take
+        int id = item.getItemId();
+        // Match the ID against known menu items to open the SettingsActivity via an intent.
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
