@@ -27,11 +27,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
-    /** URL for news data from the Guardian dataset */
-//    private static final String NEWS_REQUEST_URL = "http://content.guardianapis.com/search?from-date=2009-01-01&q=tennis&show-tags=contributor&api-key=3e99049a-6fcd-443b-aa1f-9448702c46c4";
+    /** URL for news data from the Guardian dataset
+     private static final String NEWS_REQUEST_URL = "http://content.guardianapis.com/search?from-date=2009-01-01&q=tennis&show-tags=contributor&api-key=3e99049a-6fcd-443b-aa1f-9448702c46c4";
+     */
     private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?";
-
-
 
     /**
      * Constant value for the news loader ID. We can choose any integer.
@@ -139,6 +138,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_order_by_default)
         );
 
+        String section = sharedPrefs.getString(
+                getString(R.string.settings_section_key),
+                getString(R.string.settings_section_default)
+        );
+
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
 
@@ -153,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Update URI to Use the User’s Preferences with Preferred Sort Order
         uriBuilder.appendQueryParameter("order-by", orderBy);
         uriBuilder.appendQueryParameter("page-size", pageSize);
+        if (!section.equals("all"))
+            uriBuilder.appendQueryParameter("section", section);
 
         // Return the completed uri
         return new NewsLoader(this, uriBuilder.toString());

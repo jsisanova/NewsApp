@@ -30,6 +30,10 @@ public class SettingsActivity extends AppCompatActivity {
             // Update with orderBy preference
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);
+
+            // Update with preference
+            Preference section = findPreference(getString(R.string.settings_section_key));
+            bindPreferenceSummaryToValue(section);
         }
 
         @Override
