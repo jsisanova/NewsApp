@@ -4,9 +4,12 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
+import android.graphics.Movie;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,8 +28,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     /** URL for news data from the Guardian dataset */
-    private static final String NEWS_REQUEST_URL = "http://content.guardianapis.com/search?from-date=2009-01-01&q=tennis&show-tags=contributor&api-key=3e99049a-6fcd-443b-aa1f-9448702c46c4";
-//    public final static String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=trailText&show-tags=contributor";
+//    private static final String NEWS_REQUEST_URL = "http://content.guardianapis.com/search?from-date=2009-01-01&q=tennis&show-tags=contributor&api-key=3e99049a-6fcd-443b-aa1f-9448702c46c4";
+    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=byline&show-tags=contributor";
+
 
 
     /**
@@ -121,8 +125,36 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     // Create a new Loader object for the given URL (to fetch news data)
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-//        Log.i(LOG_TAG, "Test: call onCreateLoader()");
-        return new NewsLoader(this, NEWS_REQUEST_URL);
+        // Log.i(LOG_TAG, "Test: call onCreateLoader()");
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String pageSize = sharedPrefs.getString(
+                getString(R.string.settings_page_size_key),
+                getString(R.string.settings_page_size_default));
+
+        // Allow the user to choose a preferred sort order
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example,`q=tennis`
+        uriBuilder.appendQueryParameter("q", "tennis");
+        uriBuilder.appendQueryParameter("api-key", "3e99049a-6fcd-443b-aa1f-9448702c46c4");
+        uriBuilder.appendQueryParameter("from-date", "2016-01-01");
+        // Update URI to Use the User’s Preferred Sort Order
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("page-size", pageSize);
+
+        // Return the completed uri
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
