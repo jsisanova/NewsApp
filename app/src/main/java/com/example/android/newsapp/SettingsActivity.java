@@ -13,6 +13,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class NewsPreferenceFragment extends PreferenceFragment {
-
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            // Setup a preference in the SettingsActivity the user can edit
+            addPreferencesFromResource(R.xml.settings_main);
+        }
     }
 }

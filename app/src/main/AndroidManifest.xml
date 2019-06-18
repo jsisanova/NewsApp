@@ -26,10 +26,11 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings_title">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.newsapp.MainActivity"/>
         </activity>
-    </application>
 
+    </application>
 </manifest>
