@@ -9,9 +9,6 @@
     <string name="no_updates_first_line">No updates for the moment,</string>
     <string name="no_updates_second_line"> check back later!</string>
 
-    <!--Search dialog-->
-    <string name="search">Search</string>
-
     <!-- Settings Menu Item [CHAR LIMIT=NONE] -->
     <string name="settings_menu_item">Settings</string>
 

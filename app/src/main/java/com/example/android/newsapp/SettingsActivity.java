@@ -36,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
         // Classes that implement Preference.OnPreferenceChangeListener interface are setup to listen for any Preference changes made by the user.
         // Update the displayed preference summary after it has been changed
         public boolean onPreferenceChange(Preference preference, Object value) {
+            //  Take in the preference value, convert it to a String
             String stringValue = value.toString();
             // Properly update the summary of a ListPreference (using the label, instead of the key):
             if (preference instanceof ListPreference) {
@@ -46,6 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
                     preference.setSummary(labels[prefIndex]);
                 }
             } else {
+                // Display stringValue in the summary UI (e.g. by EditText)
                 preference.setSummary(stringValue);
             }
             return true;
