@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     /** URL for news data from the Guardian dataset */
 //    private static final String NEWS_REQUEST_URL = "http://content.guardianapis.com/search?from-date=2009-01-01&q=tennis&show-tags=contributor&api-key=3e99049a-6fcd-443b-aa1f-9448702c46c4";
-    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=byline&show-tags=contributor";
+    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?";
 
 
 
@@ -149,7 +149,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         uriBuilder.appendQueryParameter("q", "tennis");
         uriBuilder.appendQueryParameter("api-key", "3e99049a-6fcd-443b-aa1f-9448702c46c4");
         uriBuilder.appendQueryParameter("from-date", "2016-01-01");
-        // Update URI to Use the User’s Preferred Sort Order
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        // Update URI to Use the User’s Preferences with Preferred Sort Order
         uriBuilder.appendQueryParameter("order-by", orderBy);
         uriBuilder.appendQueryParameter("page-size", pageSize);
 
